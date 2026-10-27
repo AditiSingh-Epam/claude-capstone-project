@@ -1,0 +1,33 @@
+# Dependencies and generated outputs
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+.vitest/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and local caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local SQLite databases and sidecars
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-shm
+*.db-wal
+
+# Personal/machine-local Claude Code settings
+.claude/settings.local.json
