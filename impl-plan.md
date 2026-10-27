@@ -203,3 +203,23 @@ The independent QA and Review Agent reviewed the staged initial project content 
 | High-confidence credential-pattern scan | No matches in staged project text; this pattern scan is not proof of absence of all secrets. |
 
 Coverage was not measured, and a clean `npm ci` was not run. QA-007 remains incomplete: standalone Chrome 155 deletion-confirmation verification has not passed. The user accepted it only as a documented limitation for release preparation; the final recommendation is conditional go for preparation and no-go for clean QA sign-off. Tests and review do not constitute PR approval.
+
+### QA-007 standalone Chrome 155 verification — resolved 2026-10-27
+
+**Method:** No browser-automation tooling was available in this Claude Code session (the user had not completed Claude in Chrome extension setup). Browser automation tools cannot substitute for the specific standalone-desktop-Chrome check this limitation required, so the verification was performed manually by the human user rather than by an agent, which is the correct way to close this gap rather than leaving it indefinitely unverified or claiming automated coverage that doesn't exist.
+
+**Setup:** A fresh production build (`npm run build`) was served by `node server/index.js` with an isolated temporary `TODO_DB_PATH`, ephemeral `PORT=3177`, and matching `TODO_ALLOWED_ORIGIN=http://127.0.0.1:3177`, isolated from the user's real local database. The user opened `http://127.0.0.1:3177` directly in their own installed desktop browser (no extension, no automation).
+
+**Environment:** Chrome `155.0.8059.85` (Official Build) (64-bit), Stable channel, reported via `chrome://version`.
+
+**Steps performed and observed (reported by the user):**
+1. Initial load rendered the empty-state UI correctly.
+2. Created a task; "Task created" feedback appeared and the task showed in the list.
+3. All / Pending / Completed filters worked correctly.
+4. Task detail view displayed fields correctly.
+5. Delete was triggered; the native browser confirmation dialog appeared and was confirmed (OK).
+6. "Task deleted" success feedback appeared; the task was removed from the list, returning to the empty state.
+7. No console errors were observed.
+8. DevTools Network tab showed, for the deleted task's ID: a `200` `fetch` (detail read) followed by a `204` `fetch` (the DELETE itself) — not `net::ERR_ABORTED` as in the prior unresolved attempt — followed by a `200` `fetch` for the refreshed `tasks?status=all` list.
+
+**Result:** The standalone desktop Chrome 155 full task lifecycle, including delete-confirmation, is **verified and passed**. This specifically resolves the `net::ERR_ABORTED`/stalled-dialog gap recorded in the 2026-10-22 QA-007 entries above. QA-007 is no longer a partial/unverified limitation. The server used for this check was stopped afterward; its temporary database was not persisted or committed.

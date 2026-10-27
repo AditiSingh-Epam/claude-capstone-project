@@ -2,7 +2,7 @@
 
 > **Review status:** Design review complete; DR-001 response agreed and incorporated on 2026-10-22.
 >
-> **Verdict:** No unresolved Critical or High design findings remain. The Medium, non-blocking security finding was resolved at the architecture/design level. Implementation and verification evidence is recorded in [`impl-plan.md`](impl-plan.md); QA-007 remains partial/unverified and was accepted as a documented release-preparation limitation on 2026-10-22.
+> **Verdict:** No unresolved Critical or High design findings remain. The Medium, non-blocking security finding was resolved at the architecture/design level. Implementation and verification evidence is recorded in [`impl-plan.md`](impl-plan.md). QA-007 (standalone Chrome 155 delete-confirmation verification) was partial/unverified at the time of this review and was accepted as a documented release-preparation limitation on 2026-10-22; it was subsequently verified and resolved on 2026-10-27 — see `impl-plan.md` for the fresh evidence.
 >
 > **Review date:** 2026-10-22
 >
