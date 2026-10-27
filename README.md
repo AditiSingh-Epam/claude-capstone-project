@@ -74,4 +74,4 @@ npm audit
 
 This standalone project includes Claude Code instructions, specialist subagents, and Skills in `CLAUDE.md` and `.claude/`. It does not include GitHub Copilot configuration. Start Claude Code from this project root and use `/run-sdlc` to resume the workflow. Follow the documented approval gates and do not claim unrun checks passed.
 
-The standalone Chrome 155 delete-confirmation verification remains incomplete and is a documented limitation, not a passed test. Re-run the verification commands above before relying on current test status.
+The standalone Chrome 155 delete-confirmation verification was completed on 2026-10-27 in Chrome 155.0.8059.85: create, filter, view, and delete-with-confirmation all passed, with the DELETE request completing (204) and no aborted network request. See `impl-plan.md` for the full evidence record. Re-run the verification commands above before relying on current test status.
